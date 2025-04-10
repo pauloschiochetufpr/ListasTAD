@@ -23,14 +23,14 @@ int cadastrarLivro(Biblioteca* b, char* titulo, char* autor, int ano, char* isbn
 }
 
 void listarTodosLivros(Biblioteca* b) {
-    printf("===== Lista de Livros =====\n");
+    printf("Lista de Livros\n");
     for (int i = 0; i < b->totalLivros; i++) {
         Livro l = b->livros[i];
         printf("%s | %s | %d | %s | %s\n", 
                l.titulo, l.autor, l.ano, l.isbn,
                l.status == DISPONIVEL ? "Disponível" : "Emprestado");
         if (l.status == EMPRESTADO) {
-            printf("  → Emprestado para: %s em %s\n", l.usuario, l.dataEmprestimo);
+            printf("Emprestado para: %s em %s\n", l.usuario, l.dataEmprestimo);
         }
     }
     printf("===========================\n\n");
