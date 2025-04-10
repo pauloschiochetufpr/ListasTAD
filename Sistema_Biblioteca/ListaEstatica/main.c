@@ -1,28 +1,34 @@
 #include <stdio.h>
-#include "bibliotecaestatica.h"
-
+#include "biblioteca_estatica.h"
 
 int main() {
+    Biblioteca b;
+    inicializarBiblioteca(&b);
 
-Biblioteca b;
+    cadastrarLivro(&b, "Dom Quixote", "Cervantes", 1605, "1234567890123");
+    cadastrarLivro(&b, "1984", "George Orwell", 1949, "9876543210123");
 
-inicializarBiblioteca(&b);
+    listarTodosLivros(&b);
 
+    emprestarLivro(&b, "9876543210123", "Maria", "01/04/2025");
 
-cadastrarLivro(&b, "Dom Quixote", "Cervantes", 1605, "1234567890123");
+    listarTodosLivros(&b);
 
-cadastrarLivro(&b, "1984", "George Orwell", 1949, "9876543210123");
+    Livro* livroConsultado = consultarLivroPorISBN(&b, "9876543210123");
+    if (livroConsultado != NULL) {
+        printf("Consulta: Livro encontrado - %s (%s)\n", livroConsultado->titulo,
+               livroConsultado->status == DISPONIVEL ? "Disponível" : "Emprestado");
+    } else {
+        printf("Consulta: Livro não encontrado.\n");
+    }
 
+    if (devolverLivro(&b, "9876543210123")) {
+        printf("Livro devolvido com sucesso.\n");
+    } else {
+        printf("Erro ao tentar devolver o livro.\n");
+    }
 
-listarTodosLivros(&b);
+    listarTodosLivros(&b);
 
-
-emprestarLivro(&b, "9876543210123", "Maria", "01/04/2025");
-
-
-listarTodosLivros(&b);
-
-
-return 0;
-
+    return 0;
 }
