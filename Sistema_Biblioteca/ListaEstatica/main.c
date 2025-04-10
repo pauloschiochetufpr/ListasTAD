@@ -5,7 +5,7 @@ int main() {
     Biblioteca b;
     inicializarBiblioteca(&b);
 
-    cadastrarLivro(&b, "Dom Quixote", "Cervantes", 1605, "1234567890123");
+    cadastrarLivro(&b, "Dom Quixote", "Cervantes", 1605, "9876543210123");
     cadastrarLivro(&b, "1984", "George Orwell", 1949, "11111111111111");
 
     listarTodosLivros(&b);
@@ -23,9 +23,9 @@ int main() {
     }
 
     if (devolverLivro(&b, "9876543210123")) {
-        printf("Livro devolvido com sucesso.\n");
+        printf("Livro devolvido!\n");
     } else {
-        printf("Erro ao tentar devolver o livro.\n");
+        printf("Erro.\n");
     }
 
     listarTodosLivros(&b);
